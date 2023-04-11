@@ -1,7 +1,7 @@
 server:
   port: 8087
   servlet:
-    context-path: /api/authorization
+    context-path: /api/authorizations
 management:
   server:
     port: 8187
