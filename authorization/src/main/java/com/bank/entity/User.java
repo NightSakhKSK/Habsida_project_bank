@@ -45,12 +45,12 @@ public class User {
         this.role = role;
     }
 
-    public Long getProfile_id() {
+    public Long getProfileId() {
         return profileId;
     }
 
-    public void setProfile_id(Long profile_id) {
-        this.profileId = profile_id;
+    public void setProfileId(Long profileId) {
+        this.profileId = profileId;
     }
 
     public String getPassword() {
@@ -64,13 +64,24 @@ public class User {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof User user)) return false;
-        return Objects.equals(getId(), user.getId()) && Objects.equals(getRole(), user.getRole()) && Objects.equals(getProfile_id(), user.getProfile_id()) && Objects.equals(getPassword(), user.getPassword());
+        if (!(o instanceof User)) return false;
+
+        User user = (User) o;
+
+        if (getId() != null ? !getId().equals(user.getId()) : user.getId() != null) return false;
+        if (getRole() != null ? !getRole().equals(user.getRole()) : user.getRole() != null) return false;
+        if (getProfileId() != null ? !getProfileId().equals(user.getProfileId()) : user.getProfileId() != null)
+            return false;
+        return getPassword() != null ? getPassword().equals(user.getPassword()) : user.getPassword() == null;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getId(), getRole(), getProfile_id(), getPassword());
+        int result = getId() != null ? getId().hashCode() : 0;
+        result = 31 * result + (getRole() != null ? getRole().hashCode() : 0);
+        result = 31 * result + (getProfileId() != null ? getProfileId().hashCode() : 0);
+        result = 31 * result + (getPassword() != null ? getPassword().hashCode() : 0);
+        return result;
     }
 
     @Override

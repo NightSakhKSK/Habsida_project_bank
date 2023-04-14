@@ -5,8 +5,8 @@ import java.sql.Timestamp;
 import java.util.Objects;
 
 @Entity
-@Table (name = "audit")
-public class audit {
+@Table (name = "Audit")
+public class Audit {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -34,7 +34,7 @@ public class audit {
     @Column(name = "entity_json", nullable = false)
     private String entityJSON;
 
-    public audit(Long id, String entityType, String operationType, String createdBy, String modifiedBy, Timestamp createdAt, Timestamp modifiedAt, String newEntityJSON, String entityJSON) {
+    public Audit(Long id, String entityType, String operationType, String createdBy, String modifiedBy, Timestamp createdAt, Timestamp modifiedAt, String newEntityJSON, String entityJSON) {
         this.id = id;
         this.entityType = entityType;
         this.operationType = operationType;
@@ -44,6 +44,10 @@ public class audit {
         this.modifiedAt = modifiedAt;
         this.newEntityJSON = newEntityJSON;
         this.entityJSON = entityJSON;
+    }
+
+    public Audit() {
+
     }
 
     public Long getId() {
@@ -121,8 +125,26 @@ public class audit {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof audit audit)) return false;
-        return Objects.equals(getId(), audit.getId()) && Objects.equals(getEntityType(), audit.getEntityType()) && Objects.equals(getOperationType(), audit.getOperationType()) && Objects.equals(getCreatedBy(), audit.getCreatedBy()) && Objects.equals(getModifiedBy(), audit.getModifiedBy()) && Objects.equals(getCreatedAt(), audit.getCreatedAt()) && Objects.equals(getModifiedAt(), audit.getModifiedAt()) && Objects.equals(getNewEntityJSON(), audit.getNewEntityJSON()) && Objects.equals(getEntityJSON(), audit.getEntityJSON());
+        if (!(o instanceof Audit)) return false;
+
+        Audit audit = (Audit) o;
+
+        if (getId() != null ? !getId().equals(audit.getId()) : audit.getId() != null) return false;
+        if (getEntityType() != null ? !getEntityType().equals(audit.getEntityType()) : audit.getEntityType() != null)
+            return false;
+        if (getOperationType() != null ? !getOperationType().equals(audit.getOperationType()) : audit.getOperationType() != null)
+            return false;
+        if (getCreatedBy() != null ? !getCreatedBy().equals(audit.getCreatedBy()) : audit.getCreatedBy() != null)
+            return false;
+        if (getModifiedBy() != null ? !getModifiedBy().equals(audit.getModifiedBy()) : audit.getModifiedBy() != null)
+            return false;
+        if (getCreatedAt() != null ? !getCreatedAt().equals(audit.getCreatedAt()) : audit.getCreatedAt() != null)
+            return false;
+        if (getModifiedAt() != null ? !getModifiedAt().equals(audit.getModifiedAt()) : audit.getModifiedAt() != null)
+            return false;
+        if (getNewEntityJSON() != null ? !getNewEntityJSON().equals(audit.getNewEntityJSON()) : audit.getNewEntityJSON() != null)
+            return false;
+        return getEntityJSON() != null ? getEntityJSON().equals(audit.getEntityJSON()) : audit.getEntityJSON() == null;
     }
 
     @Override
@@ -132,7 +154,7 @@ public class audit {
 
     @Override
     public String toString() {
-        return "audit{" +
+        return "Audit{" +
                 "id=" + id +
                 ", entityType='" + entityType + '\'' +
                 ", operationType='" + operationType + '\'' +

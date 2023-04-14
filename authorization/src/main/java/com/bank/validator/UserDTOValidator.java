@@ -17,6 +17,5 @@ public class UserDTOValidator implements Validator {
         UserDTO userDTO = (UserDTO) target;
 
         ValidationUtils.rejectIfEmptyOrWhitespace(errors, "username", "field.required");
-        // Дополнительные проверки и валидации для полей DTO
     }
 }
