@@ -1,10 +1,13 @@
-package com.bank.entity;
+package com.bank.authorization.entity;
+
+import com.bank.authorization.listener.AuditUserListener;
 
 import javax.persistence.*;
-import java.util.Objects;
+
 
 @Entity
 @Table(name = "users")
+@EntityListeners(AuditUserListener.class)
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -13,9 +16,9 @@ public class User {
     @Column(nullable = false)
     private String role;
 
-    @Column(nullable = false, unique = true, name = "profile_id")
+    @Column(nullable = false, name = "profile_id")
     private Long profileId;
-    @Column(nullable = false, unique = true)
+    @Column(nullable = false)
     private String password;
 
     public User(Long id, String role, Long profileId, String password) {

@@ -1,6 +1,6 @@
-package com.bank.validator;
+package com.bank.authorization.validator;
 
-import com.bank.DTO.UserDTO;
+import com.bank.authorization.DTO.UserDTO;
 import org.springframework.validation.Errors;
 import org.springframework.validation.ValidationUtils;
 import org.springframework.validation.Validator;

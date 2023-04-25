@@ -1,6 +1,6 @@
-package com.bank.handler;
+package com.bank.authorization.handler;
 
-import com.bank.exception.UserNotFoundException;
+import com.bank.authorization.exception.UserNotFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -25,7 +25,7 @@ public class GlobalExceptionHandler {
 
     @ExceptionHandler(value = {Exception.class})
     public ResponseEntity<Object> handleGeneralException(Exception ex) {
-        // Создайте объект с информацией об ошибке и установите соответствующий HTTP статус код
+
         Map<String, Object> errorDetails = new HashMap<>();
         errorDetails.put("message", ex.getMessage());
         errorDetails.put("timestamp", LocalDateTime.now());

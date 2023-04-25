@@ -1,4 +1,4 @@
-package com.bank.DTO;
+package com.bank.authorization.DTO;
 
 import java.sql.Timestamp;
 

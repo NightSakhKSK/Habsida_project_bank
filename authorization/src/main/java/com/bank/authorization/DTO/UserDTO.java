@@ -1,9 +1,4 @@
-package com.bank.DTO;
-
-import javax.persistence.Column;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+package com.bank.authorization.DTO;
 
 public class UserDTO {
     private Long id;

@@ -1,4 +1,4 @@
-package com.bank.entity;
+package com.bank.authorization.entity;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
@@ -47,7 +47,6 @@ public class Audit {
     }
 
     public Audit() {
-
     }
 
     public Long getId() {
