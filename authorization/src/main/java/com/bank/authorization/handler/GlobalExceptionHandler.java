@@ -13,12 +13,14 @@ import java.util.Map;
 @ControllerAdvice
 public class GlobalExceptionHandler {
 
+    private static final String MESSAGE_KEY = "message";
+    private static final String TIMESTAMP_KEY = "timestamp";
+
     @ExceptionHandler(value = {UserNotFoundException.class})
     public ResponseEntity<Object> handleUserNotFoundException(UserNotFoundException ex) {
-        // Создайте объект с информацией об ошибке и установите соответствующий HTTP статус код
         Map<String, Object> errorDetails = new HashMap<>();
-        errorDetails.put("message", ex.getMessage());
-        errorDetails.put("timestamp", LocalDateTime.now());
+        errorDetails.put(MESSAGE_KEY, ex.getMessage());
+        errorDetails.put(TIMESTAMP_KEY, LocalDateTime.now());
 
         return new ResponseEntity<>(errorDetails, HttpStatus.NOT_FOUND);
     }
@@ -27,8 +29,8 @@ public class GlobalExceptionHandler {
     public ResponseEntity<Object> handleGeneralException(Exception ex) {
 
         Map<String, Object> errorDetails = new HashMap<>();
-        errorDetails.put("message", ex.getMessage());
-        errorDetails.put("timestamp", LocalDateTime.now());
+        errorDetails.put(MESSAGE_KEY, ex.getMessage());
+        errorDetails.put(TIMESTAMP_KEY, LocalDateTime.now());
 
         return new ResponseEntity<>(errorDetails, HttpStatus.INTERNAL_SERVER_ERROR);
     }
