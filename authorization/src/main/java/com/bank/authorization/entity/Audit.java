@@ -51,4 +51,7 @@ public class Audit {
 
     @Column(name = "entity_json", nullable = false)
     private String entityJSON;
+
+    public Audit(long l, String s, String create, String s1, String system, Timestamp from) {
+    }
 }

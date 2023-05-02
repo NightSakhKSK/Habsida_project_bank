@@ -2,7 +2,6 @@ package com.bank.authorization.validator;
 
 import com.bank.authorization.DTO.UserDTO;
 import org.springframework.validation.Errors;
-import org.springframework.validation.ValidationUtils;
 import org.springframework.validation.Validator;
 
 
@@ -15,7 +14,5 @@ public class UserDTOValidator implements Validator {
     @Override
     public void validate(Object target, Errors errors) {
         UserDTO userDTO = (UserDTO) target;
-
-        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "username", "field.required");
     }
 }

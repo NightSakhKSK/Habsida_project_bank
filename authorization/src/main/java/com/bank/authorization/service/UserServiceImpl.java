@@ -2,10 +2,11 @@ package com.bank.authorization.service;
 
 import com.bank.authorization.DTO.UserDTO;
 import com.bank.authorization.entity.User;
+import com.bank.authorization.exception.UserNotFoundException;
 import com.bank.authorization.repository.UserRepository;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.modelmapper.ModelMapper;
 
 import java.util.List;
 import java.util.NoSuchElementException;
@@ -51,18 +52,18 @@ public class UserServiceImpl implements UserService {
     @Override
     public UserDTO updateUser(Long id, UserDTO userDTO) {
         User existingUser = userRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("User not found with id: " + id));
-        // Обновить поля пользователя данными из userDTO
+                .orElseThrow(() -> new UserNotFoundException("User not found with id: " + id));
+
+        // Обновление полей
         existingUser.setRole(userDTO.getRole());
         existingUser.setProfileId(userDTO.getProfileId());
         existingUser.setPassword(userDTO.getPassword());
 
-        // Сохранить обновленного пользователя
         User updatedUser = userRepository.save(existingUser);
 
-        // Преобразовать обновленного пользователя в UserDTO и вернуть
         return convertToUserDTO(updatedUser);
     }
+
     private UserDTO convertToUserDTO(User user) {
         UserDTO userDTO = new UserDTO();
         userDTO.setId(user.getId());

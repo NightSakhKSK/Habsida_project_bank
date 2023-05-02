@@ -15,3 +15,4 @@ public class UserDTO {
     private Long profileId;
     private String password;
 }
+
