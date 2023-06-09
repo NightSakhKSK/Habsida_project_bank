@@ -2,17 +2,23 @@ package com.bank.authorization.controller;
 
 import com.bank.authorization.DTO.UserDTO;
 import com.bank.authorization.service.UserService;
+import io.micrometer.core.annotation.Counted;
+import io.micrometer.core.annotation.Timed;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.RestController;
 
-import javax.validation.Valid;
 import java.util.List;
 
 @Tag(name = "Пользователи", description = "Операции, связанные с пользователями")
@@ -31,7 +37,7 @@ public class UserController {
     @PutMapping("/{id}")
     @Operation(summary = "Обновление данных пользователя")
     public ResponseEntity<UserDTO> updateUser(@PathVariable Long id, @RequestBody UserDTO userDTO) {
-        UserDTO updatedUserDTO = userService.updateUser(id, userDTO);
+        final UserDTO updatedUserDTO = userService.updateUser(id, userDTO);
         return ResponseEntity.ok(updatedUserDTO);
     }
 
@@ -43,6 +49,8 @@ public class UserController {
     }
 
     @Operation(summary = "Получение списка всех пользователей")
+    @Timed(value = "findById.time", description = "Time taken to get authorization details by id")
+    @Counted(value = "findById.count", description = "Number of times getById method has been invoked")
     @GetMapping
     public List<UserDTO> getAllUsers() {
         return userService.findAll();

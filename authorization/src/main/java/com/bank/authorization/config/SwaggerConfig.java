@@ -22,6 +22,6 @@ public class SwaggerConfig {
      */
     @Bean
     public OpenAPI baseOpenApi() {
-        return new OpenAPI().info(new Info().title("Transfer API").version("1.0.0").description("Transfer API"));
+        return new OpenAPI().info(new Info().title("Transfer API").version("1.0.0"));
     }
 }

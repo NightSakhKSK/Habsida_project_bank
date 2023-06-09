@@ -2,25 +2,22 @@ server:
   port: 8087
   servlet:
     context-path: /api/authorizations
+
 management:
   server:
     port: 8187
   endpoint:
     shutdown:
       enabled: true
-  management:
-    endpoints:
-      web:
-        exposure:
-          include: prometheus, '*'
-  metrics:
-    export:
-      prometheus:
-        enabled: true
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+
 
 spring:
   datasource:
-    url: jdbc:postgresql://localhost:5433/postgres
+    url: jdbc:postgresql://bank-db:5432/postgres
     username: user
     password: password
   liquibase:

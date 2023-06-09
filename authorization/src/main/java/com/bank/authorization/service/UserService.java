@@ -1,7 +1,6 @@
 package com.bank.authorization.service;
 
 import com.bank.authorization.DTO.UserDTO;
-import com.bank.authorization.entity.User;
 
 import java.util.List;
 
@@ -13,5 +12,3 @@ public interface UserService {
     void delete(Long id);
     UserDTO updateUser(Long id, UserDTO userDTO);
 }
-
-

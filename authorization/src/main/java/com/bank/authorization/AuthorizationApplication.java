@@ -14,14 +14,14 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @EnableEurekaClient
 @EnableTransactionManagement
 public class AuthorizationApplication {
-    public static void main(String[] args) {
-        SpringApplication.run(AuthorizationApplication.class, args);
-    }
     @Autowired
     private AuditService auditService;
 
     @EventListener(ApplicationReadyEvent.class)
     public void init() {
         AuditUserListener.setAuditService(auditService);
+    }
+    public static void main(String[] args) {
+        SpringApplication.run(AuthorizationApplication.class, args);
     }
 }

@@ -18,7 +18,7 @@ public class GlobalExceptionHandler {
 
     @ExceptionHandler(value = {UserNotFoundException.class})
     public ResponseEntity<Object> handleUserNotFoundException(UserNotFoundException ex) {
-        Map<String, Object> errorDetails = new HashMap<>();
+        final Map<String, Object> errorDetails = new HashMap<>();
         errorDetails.put(MESSAGE_KEY, ex.getMessage());
         errorDetails.put(TIMESTAMP_KEY, LocalDateTime.now());
 
@@ -28,7 +28,7 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(value = {Exception.class})
     public ResponseEntity<Object> handleGeneralException(Exception ex) {
 
-        Map<String, Object> errorDetails = new HashMap<>();
+        final Map<String, Object> errorDetails = new HashMap<>();
         errorDetails.put(MESSAGE_KEY, ex.getMessage());
         errorDetails.put(TIMESTAMP_KEY, LocalDateTime.now());
 

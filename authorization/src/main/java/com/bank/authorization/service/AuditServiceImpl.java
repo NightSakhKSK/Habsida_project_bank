@@ -41,7 +41,7 @@ public class AuditServiceImpl implements AuditService {
 
     @Override
     @Timed(value = "getAllAuditDetails.time", description = "Time taken to get all Audit details")
-    @Counted(value = "getAllAuditDetails.calls",
+    @Counted(value = "getAllAuditDetails.count",
             description = "Number of times get all Audit details method has been invoked")
     public List<AuditDTO> findAll() {
         List<Audit> audits = auditRepository.findAll();
@@ -49,8 +49,8 @@ public class AuditServiceImpl implements AuditService {
     }
 
     @Override
-    @Timed(value = "create.time", description = "Time taken to create Audit details")
-    @Counted(value = "create.count", description = "Number of times create method has been invoked")
+    @Timed(value = "createAudit.time", description = "Time taken to create Audit details")
+    @Counted(value = "createAudit.count", description = "Number of times create method has been invoked")
     public void createAudit(User user, String operationType) {
         try {
             String entityJSON = objectMapper.writeValueAsString(user);

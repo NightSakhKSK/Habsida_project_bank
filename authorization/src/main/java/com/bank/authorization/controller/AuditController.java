@@ -28,7 +28,7 @@ public class AuditController {
     @Operation(summary = "Получение списка всех аудитов")
     @GetMapping
     public ResponseEntity<List<Audit>> getAllAudits() {
-        List<Audit> audits = auditRepository.findAll();
+        final List<Audit> audits = auditRepository.findAll();
         return new ResponseEntity<>(audits, HttpStatus.OK);
     }
 
